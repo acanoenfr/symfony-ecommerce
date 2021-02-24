@@ -14,7 +14,7 @@
             <hr />
             <p>{{ product.description }}</p>
             <hr />
-            <a href="" class="btn btn-primary">Ajouter au panier</a>
+            <a href="{{ path('add_to_cart', { 'id' : product.id }) }}" class="btn btn-primary">Ajouter au panier</a>
         </div>
     </div>
 {% endblock %}
