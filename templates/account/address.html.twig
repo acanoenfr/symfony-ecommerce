@@ -15,8 +15,8 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ address.name }}</h5>
                         <p class="card-text">
-                            {{ address.address }},<br />
-                            {{ address.postal }} - {{ address.city }} - {{ address.country }}
+                            {{ address.address }}<br />
+                            {{ address.postal }} {{ address.city }} - {{ address.country }}
                         </p>
                         <a href="{{ path('account_address_edit', { 'id' : address.id }) }}">Modifier</a>
                         | <a href="{{ path('account_address_delete', { 'id' : address.id }) }}">Supprimer</a>
