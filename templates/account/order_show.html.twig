@@ -25,15 +25,15 @@
             <tr>
                 <td>{{ item.product }}</td>
                 <td>x{{ item.quantity }}</td>
-                <td>{{ (item.price / 100)|number_format(2, '.', ',') }} €</td>
-                <td>{{ (item.total / 100)|number_format(2, '.', ',') }} €</td>
+                <td>{{ (item.price / 100)|number_format(2, ',', ' ') }} €</td>
+                <td>{{ (item.total / 100)|number_format(2, ',', ' ') }} €</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
     <div class="text-right">
-        <strong>Sous-Total :</strong> {{ (order.total / 100)|number_format(2, '.', ',') }} €<br />
-        <strong>Livraison :</strong> {{ (order.carrierPrice)|number_format(2, '.', ',') }} €<br />
-        <strong>Total :</strong> {{ ((order.total / 100) + order.carrierPrice)|number_format(2, '.', ',') }} €
+        <strong>Sous-Total :</strong> {{ (order.total / 100)|number_format(2, ',', ' ') }} €<br />
+        <strong>Livraison :</strong> {{ (order.carrierPrice / 100)|number_format(2, ',', ' ') }} €<br />
+        <strong>Total :</strong> {{ ((order.total / 100) + order.carrierPrice / 100)|number_format(2, ',', ' ') }} €
     </div>
 {% endblock %}

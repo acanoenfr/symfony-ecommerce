@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classe\Cart;
+use App\Classe\Mail;
 use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,7 +40,9 @@ class OrderSuccessController extends AbstractController
             $order->setIsPaid(1);
             $this->entityManager->flush();
 
-            // TODO: Envoyer un email à notre client pour confirmer sa commande
+            $mail = new Mail();
+            $content = "Bonjour ".$order->getUser()->getFirstname()."<br/>Merci pour votre commande.<br/><br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae culpa dolor doloremque harum maiores officiis porro qui rerum. Amet asperiores eius ipsa nisi vel? Dolorem enim neque quod velit?";
+            $mail->send($order->getUser()->getEmail(), $order->getUser()->getFirstname(), 'Votre commande La Boutique Française est bien validée.', $content);
         }
 
         return $this->render('order_success/index.html.twig', [

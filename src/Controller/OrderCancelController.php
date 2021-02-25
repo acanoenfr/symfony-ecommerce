@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\Mail;
 use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,7 +34,9 @@ class OrderCancelController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        // TODO: Envoyer un email pour lui indiquer l'échec de paiement
+        $mail = new Mail();
+        $content = "Bonjour ".$order->getUser()->getFirstname()."<br/>Une erreur est survenue lors du paiement de votre commande.<br/><br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae culpa dolor doloremque harum maiores officiis porro qui rerum. Amet asperiores eius ipsa nisi vel? Dolorem enim neque quod velit?";
+        $mail->send($order->getUser()->getEmail(), $order->getUser()->getFirstname(), "Erreur lors du paiement de votre commande sur La Boutique Française", $content);
 
         return $this->render('order_cancel/index.html.twig', [
             'order' => $order
